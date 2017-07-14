@@ -78,6 +78,60 @@ bool itoa(char* buffer, size_t len, uintmax_t i)
 	return false;
 }
 
+char* strcpy(char* restrict s1, char const* restrict s2)
+{
+	char* const ret = s1;
+	do
+	{
+		*s1 = *s2;
+		++s1;
+		++s2;
+	} while (*s2);
+	return ret;
+}
+
+char* strncpy(char* const restrict s1, char const* const restrict s2, size_t const n)
+{
+	char c = *s2;
+	for (size_t i = 0; i < n; ++i)
+	{
+		s1[i] = c;
+		if (c)
+			c = s2[i];
+	}
+	return s1;
+}
+
+char* strcat(char* const restrict s1, char const* restrict s2)
+{
+	size_t i = strlen(s1);
+	while (1)
+	{
+		s1[i] = *s2;
+		if (!*s2)
+			break;
+		++s2;
+		++i;
+	}
+	return s1;
+}
+
+char* strncat(char* const restrict s1, char const* restrict s2, size_t const n)
+{
+	size_t const len = strlen(s1);
+	size_t i = len;
+	for (; i < (len + n); ++i)
+	{
+		if (*s2)
+			s1[i] = *s2;
+		else
+			break;
+		++s2;
+	}
+	s1[i] = 0;
+	return s1;
+}
+
 int memcmp(void const* const s1, void const* const s2, size_t const n)
 {
 	unsigned char const* const c1 = s1;

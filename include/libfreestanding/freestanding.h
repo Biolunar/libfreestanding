@@ -26,6 +26,13 @@ bool streq(char const* s1, char const* s2);
 void strrev(char* str, size_t n);
 bool itoa(char* buffer, size_t len, uintmax_t i);
 
+// From the standard library
+char* strcpy(char* restrict s1, char const* restrict s2);
+char* strncpy(char* restrict s1, char const* restrict s2, size_t n);
+char* strcat(char* restrict s1, char const* restrict s2);
+char* strncat(char* restrict s1, char const* restrict s2, size_t n);
+
+// Mandatory
 int memcmp(void const* s1, void const* s2, size_t n);
 void* memset(void* s, int c, size_t n);
 void* memcpy(void* restrict s1, void const* restrict s2, size_t n);
